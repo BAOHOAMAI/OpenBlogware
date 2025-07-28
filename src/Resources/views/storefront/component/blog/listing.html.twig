@@ -10,13 +10,11 @@
     }
 } %}
 {% block werkl_blog_listing %}
-{{dump(searchResult)}}
     <div class="cms-element-product-listing-wrapper"
          data-listing-pagination="true"
          data-listing-pagination-options='{{ paginationConfig }}'
          data-listing="true"
          data-listing-options='{{ listingPagination|json_encode }}'>
-
         <div class="cms-element-product-listing">
             {% if searchResult.total > 0 %}
                 <div class="cms-element-werkl-blog-listing-actions row justify-content-between">

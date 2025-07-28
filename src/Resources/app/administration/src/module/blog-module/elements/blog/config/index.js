@@ -19,30 +19,36 @@ export default {
             selectedCategories: null,
         };
     },
+
     computed: {
         blogCategoryRepository() {
-            return this.repositoryFactory.create('werkl_blog_category');
+            const repo = this.repositoryFactory.create('werkl_blog_category');
+            return repo;
         },
 
         blogListingSelectContext() {
-            const context = Object.assign({}, Shopware.Store.get('context').api);
+            const context = Object.assign({}, Shopware.Context.api);
             context.inheritance = true;
-
             return context;
         },
 
         blogCategoriesConfigValue() {
-            return this.element.config.blogCategories.value;
+            return Array.isArray(this.element.config.blogCategories?.value) 
+                ? this.element.config.blogCategories.value 
+                : [];
         },
     },
 
     watch: {
         selectedCategories: {
             handler(value) {
-                this.element.config.blogCategories.value = value.getIds();
-                this.element.data.blogCategories = value;
-                this.$emit('element-update', this.element);
+                if (value) {
+                    this.element.config.blogCategories.value = value.getIds();
+                    this.element.data.blogCategories = value;
+                    this.$emit('element-update', this.element);
+                }
             },
+            deep: true, 
         },
     },
 
@@ -54,24 +60,35 @@ export default {
         async createdComponent() {
             this.initElementConfig('blog');
             await this.getSelectedCategories();
+            this.$nextTick(() => {
+                console.log('✅ Final check config.blogCategories.value:', this.element.config.blogCategories.value);
+            });
         },
 
-        getSelectedCategories() {
-            if (!Shopware.Utils.types.isEmpty(this.blogCategoriesConfigValue)) {
+        async getSelectedCategories() {
+            const context = Shopware.Context.api;
+
+            if (this.blogCategoriesConfigValue.length > 0) {
                 const criteria = new Criteria();
                 criteria.setIds(this.blogCategoriesConfigValue);
 
-                this.blogCategoryRepository
-                    .search(criteria, Shopware.Store.get('context').api)
-                    .then((result) => {
-                        this.selectedCategories = result;
-                    });
+                try {
+                    const result = await this.blogCategoryRepository.search(criteria, context);
+                    this.selectedCategories = result;
+                } catch (error) {
+                    this.selectedCategories = new EntityCollection(
+                        this.blogCategoryRepository.route,
+                        this.blogCategoryRepository.entityName,
+                        context,
+                        new Criteria()
+                    );
+                }
             } else {
                 this.selectedCategories = new EntityCollection(
                     this.blogCategoryRepository.route,
-                    'werkl_blog_category',
-                    Shopware.Store.get('context').api,
-                    new Criteria(),
+                    this.blogCategoryRepository.entityName,
+                    context,
+                    new Criteria()
                 );
             }
         },
