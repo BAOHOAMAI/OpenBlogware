@@ -6,28 +6,14 @@
             entity="werkl_blog_entries"
             v-model:value="element.config.blogEntry.value"
         >
-            <template #selection-label-property="{ item }">
-                <slot
-                    name="selection-label-property"
-                    v-bind="{ item }"
-                >
-                    {{ item.translated.title || item.name }}
-                </slot>
+            <template #selection-label-property="slotProps">
+                {{ slotProps.item.translated.title || slotProps.item.name }}
             </template>
 
-            <template #result-item="{ item, index }">
-                <slot
-                    name="result-item"
-                    v-bind="{ item, index }"
-                >
-                    <li
-                        is="sw-select-result"
-                        v-bind="{ item, index }"
-                    >
-                        {{ item.translated.title || item.name }}
-                    </li>
-                </slot>
+            <template #result-label-property="slotProps">
+                {{ slotProps.item.translated.title || slotProps.item.name }}
             </template>
+
         </sw-entity-single-select>
     </div>
 {% endblock %}
