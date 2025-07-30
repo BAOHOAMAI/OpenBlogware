@@ -61,7 +61,7 @@ export default {
             this.initElementConfig('blog');
             await this.getSelectedCategories();
             this.$nextTick(() => {
-                console.log('✅ Final check config.blogCategories.value:', this.element.config.blogCategories.value);
+                console.log('Blog Category :', this.element.config.blogCategories.value);
             });
         },
 

@@ -34,15 +34,14 @@ export default {
         },
 
         onBlogEntryChange(value) {
-            console.log('Bài viết được chọn:', value);
             this.element.config.blogEntry.value = value;
             this.$emit('element-update', this.element); 
         },
     },
 
-    watch: {
-        'element.config.blogEntry.value': function (newValue) {
-            console.log('Giá trị blogEntry đã thay đổi:', newValue);
-        },
-    },
+    // watch: {
+    //     'element.config.blogEntry.value': function (newValue) {
+    //         console.log('Giá trị blogEntry đã thay đổi:', newValue);
+    //     },
+    // },
 };
