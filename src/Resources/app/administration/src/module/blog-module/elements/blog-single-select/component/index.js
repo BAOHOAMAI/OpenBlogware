@@ -29,7 +29,7 @@ export default {
 
     computed: {
         articleImage() {
-            return this.mediaUrl ? this.mediaUrl : `${Shopware.Store.get('context').api.assetsPath}/administration/static/img/cms/preview_mountain_small.jpg`;
+            return this.mediaUrl ? this.mediaUrl : `${Shopware.Context.api.assetsPath}/administration/static/img/cms/preview_mountain_small.jpg`;
         },
 
         repository() {
@@ -64,7 +64,7 @@ export default {
                         this.article = entity;
                         this.title = this.article.translated.title;
                         this.teaser = this.article.translated.teaser;
-                        this.mediaUrl = this.article.media.url;
+                        this.mediaUrl = this.article.media?.url;
                         this.categoryName = this.article.blogCategories[0] ? this.article.blogCategories[0].translated.name : null;
                     });
             } else {

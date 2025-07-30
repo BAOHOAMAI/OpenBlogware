@@ -27,7 +27,7 @@ export default {
         },
 
         blogListingSelectContext() {
-            const context = Object.assign({}, Shopware.Context.api);
+            const context = { ...Shopware.Context.api };
             context.inheritance = true;
             return context;
         },
@@ -66,7 +66,7 @@ export default {
         },
 
         async getSelectedCategories() {
-            const context = Shopware.Context.api;
+            const context = { ...Shopware.Context.api };
 
             if (this.blogCategoriesConfigValue.length > 0) {
                 const criteria = new Criteria();

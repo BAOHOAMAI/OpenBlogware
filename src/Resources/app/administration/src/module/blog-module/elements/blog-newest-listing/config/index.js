@@ -1,16 +1,15 @@
 import template from './werkl-cms-el-config-newest-listing.html.twig';
 import './werkl-cms-el-config-newest-listing.scss';
 
-const { Mixin } = Shopware;
 const { EntityCollection, Criteria } = Shopware.Data;
 
-export default {
+Shopware.Component.register('werkl-cms-el-config-newest-listing', {
     template,
 
     inject: ['repositoryFactory'],
 
     mixins: [
-        Mixin.getByName('cms-element'),
+        'cms-element'
     ],
 
     data() {
@@ -26,7 +25,7 @@ export default {
         },
 
         blogListingSelectContext() {
-            const context = Object.assign({}, Shopware.Store.get('context').api);
+            const context = { ...Shopware.Context.api };
             context.inheritance = true;
 
             return context;
@@ -38,12 +37,11 @@ export default {
     },
 
     watch: {
-        selectedCategories: {
-            handler(value) {
-                this.element.config.blogCategories.value = value.getIds();
-                this.$set(this.element.data, 'blogCategories', value);
-                this.$emit('element-update', this.element);
-            },
+        selectedCategories(value) {
+            this.element.config.blogCategories.value = value.getIds();
+            this.element.data.blogCategories = value
+            // this.$set(this.element.data, 'blogCategories', value);
+            this.$emit('element-update', this.element);
         },
     },
 
@@ -58,12 +56,13 @@ export default {
         },
 
         getSelectedCategories() {
+            const context = { ...Shopware.Context.api };
             if (!Shopware.Utils.types.isEmpty(this.blogCategoriesConfigValue)) {
                 const criteria = new Criteria();
                 criteria.setIds(this.blogCategoriesConfigValue);
 
                 this.blogCategoryRepository
-                    .search(criteria, Shopware.Store.get('context').api)
+                    .search(criteria, context)
                     .then((result) => {
                         this.selectedCategories = result;
                     });
@@ -71,10 +70,10 @@ export default {
                 this.selectedCategories = new EntityCollection(
                     this.blogCategoryRepository.route,
                     this.blogCategoryRepository.schema.entity,
-                    Shopware.Store.get('context').api,
+                    context,
                     new Criteria(),
                 );
             }
         },
     },
-};
+});

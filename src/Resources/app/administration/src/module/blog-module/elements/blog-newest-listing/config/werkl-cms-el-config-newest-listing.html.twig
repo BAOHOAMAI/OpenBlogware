@@ -30,12 +30,16 @@
         <mt-select
             :label="$t('werkl-blog.elements.newestListing.config.showType.label')"
             v-model="element.config.showType.value"
-            :options="[{"
-            label":"{{
-            $t('werkl-blog.elements.newestListing.config.showType.options.all')
-            }}","value":"all"},{"label":"{{
-            $t('werkl-blog.elements.newestListing.config.showType.options.select')
-            }}","value":"select"}]"
+            :options="[
+                {
+                    label: $t('werkl-blog.elements.newestListing.config.showType.options.all'),
+                    value: 'all'
+                },
+                {
+                    label: $t('werkl-blog.elements.newestListing.config.showType.options.select'),
+                    value: 'select'
+                }
+            ]"
         ></mt-select>
         {% endblock %}
 

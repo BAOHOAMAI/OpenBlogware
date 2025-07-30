@@ -17,7 +17,6 @@ export default {
     methods: {
         createdComponent() {
             this.initElementConfig('blog-newest-listing');
-            this.initElementData('blog-newest-listing');
         },
     },
 };
