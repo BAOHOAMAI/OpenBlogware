@@ -1,7 +1,7 @@
 const { Component } = Shopware;
-
+import './config';
 Component.register('werkl-cms-el-newest-listing', () => import('./component'));
-Component.register('werkl-cms-el-config-newest-listing', () => import('./config'));
+// Component.register('werkl-cms-el-config-newest-listing', () => import('./config'));
 Component.register('werkl-cms-el-preview-newest-listing', () => import('./preview'));
 
 Shopware.Service('cmsService').registerCmsElement({

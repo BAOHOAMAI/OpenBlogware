@@ -72,7 +72,7 @@ class BlogPageLoader
             $metaDescription = $blogEntry->getTranslation('metaDescription') ?? $blogEntry->getTeaser();
             $metaAuthor = $blogEntry->getBlogAuthor() ? $blogEntry->getBlogAuthor()->getFullName() : '';
             $metaInformation->setMetaTitle($metaTitle);
-            $metaInformation->setMetaDescription($metaDescription);
+            $metaInformation->setMetaDescription($metaDescription ?? '');
             $metaInformation->setAuthor($metaAuthor);
             $page->setMetaInformation($metaInformation);
         }

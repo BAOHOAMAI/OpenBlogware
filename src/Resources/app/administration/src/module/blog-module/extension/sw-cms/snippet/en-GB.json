@@ -5,7 +5,25 @@
         },
         "detail": {
             "label": {
-                "pageTypeBlog": "Blog page"
+                "pageTypeBlog": "Blog page",
+                "blockCategory": {
+                    "werkl-blog": "Blog Blocks"
+                }
+            }
+        }
+    },
+    "apps": {
+        "sw-cms": {
+            "sorting": {
+                "labelSortByBlogPages": "Blog pages"
+            },
+            "detail": {
+                "label": {
+                    "pageTypeBlog": "Blog page",
+                    "blockCategory": {
+                        "werkl-blog": "Blog Blocks"
+                    }
+                }
             }
         }
     }
