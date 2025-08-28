@@ -4,7 +4,7 @@
     "name": "open-blogware.constant"
   },
   "main.js": {
-    "file": "assets/werkl-open-blogware-TmNybzJE.js",
+    "file": "assets/werkl-open-blogware-B5C7uv26.js",
     "name": "werkl-open-blogware",
     "src": "main.js",
     "isEntry": true,
@@ -34,7 +34,6 @@
       "module/blog-module/elements/blog-detail/config/index.js",
       "module/blog-module/elements/blog-detail/preview/index.js",
       "module/blog-module/elements/blog-newest-listing/component/index.js",
-      "module/blog-module/elements/blog-newest-listing/config/index.js",
       "module/blog-module/elements/blog-newest-listing/preview/index.js",
       "module/blog-module/elements/blog-single-select/component/index.js",
       "module/blog-module/elements/blog-single-select/config/index.js",
@@ -49,6 +48,9 @@
       "module/blog-module/page/werkl-blog-detail/index.js",
       "module/blog-module/page/werkl-blog-create/index.js",
       "module/blog-module/page/werkl-blog-list/index.js"
+    ],
+    "css": [
+      "assets/werkl-open-blogware-DBPNpLjr.css"
     ]
   },
   "module/blog-module/blocks/categories/component/index.js": {
@@ -208,21 +210,12 @@
     ]
   },
   "module/blog-module/elements/blog-newest-listing/component/index.js": {
-    "file": "assets/index-CAbVHoT1.js",
+    "file": "assets/index-D5hWPI9k.js",
     "name": "index",
     "src": "module/blog-module/elements/blog-newest-listing/component/index.js",
     "isDynamicEntry": true,
     "css": [
       "assets/index-BsdQnDUd.css"
-    ]
-  },
-  "module/blog-module/elements/blog-newest-listing/config/index.js": {
-    "file": "assets/index-BOG9sD-f.js",
-    "name": "index",
-    "src": "module/blog-module/elements/blog-newest-listing/config/index.js",
-    "isDynamicEntry": true,
-    "css": [
-      "assets/index-DBPNpLjr.css"
     ]
   },
   "module/blog-module/elements/blog-newest-listing/preview/index.js": {
@@ -235,7 +228,7 @@
     ]
   },
   "module/blog-module/elements/blog-single-select/component/index.js": {
-    "file": "assets/index-DefliERF.js",
+    "file": "assets/index-CUC8T_lY.js",
     "name": "index",
     "src": "module/blog-module/elements/blog-single-select/component/index.js",
     "isDynamicEntry": true,
@@ -268,7 +261,7 @@
     ]
   },
   "module/blog-module/elements/blog/config/index.js": {
-    "file": "assets/index-BIfOpw03.js",
+    "file": "assets/index-lmGByOiG.js",
     "name": "index",
     "src": "module/blog-module/elements/blog/config/index.js",
     "isDynamicEntry": true,

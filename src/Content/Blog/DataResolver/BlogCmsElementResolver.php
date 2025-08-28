@@ -61,7 +61,8 @@ class BlogCmsElementResolver extends AbstractCmsElementResolver
         ]);
 
         $criteria->addSorting(
-            new FieldSorting('publishedAt', FieldSorting::DESCENDING)
+            new FieldSorting('publishedAt', FieldSorting::DESCENDING),
+            new FieldSorting('id', FieldSorting::DESCENDING)
         );
 
         $showTypeConfig = $config->get('showType') ?? null;

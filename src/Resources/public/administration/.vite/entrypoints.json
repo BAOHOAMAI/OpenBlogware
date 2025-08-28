@@ -2,7 +2,9 @@
   "base": "/bundles/werklopenblogware/administration/",
   "entryPoints": {
     "werkl-open-blogware": {
-      "css": [],
+      "css": [
+        "/bundles/werklopenblogware/administration/assets/werkl-open-blogware-DBPNpLjr.css"
+      ],
       "dynamic": [
         "/bundles/werklopenblogware/administration/assets/index-PFq0eWze.js",
         "/bundles/werklopenblogware/administration/assets/index-Dw-9VDck.js",
@@ -20,7 +22,7 @@
         "/bundles/werklopenblogware/administration/assets/index-Cpp-wPHR.js",
         "/bundles/werklopenblogware/administration/assets/index-DJAcGeUy.js",
         "/bundles/werklopenblogware/administration/assets/index-BdXtrSrZ.js",
-        "/bundles/werklopenblogware/administration/assets/index-BIfOpw03.js",
+        "/bundles/werklopenblogware/administration/assets/index-lmGByOiG.js",
         "/bundles/werklopenblogware/administration/assets/index-CljQY0Ag.js",
         "/bundles/werklopenblogware/administration/assets/index-Rlf0pMI2.js",
         "/bundles/werklopenblogware/administration/assets/index-DHPSVGBu.js",
@@ -28,10 +30,9 @@
         "/bundles/werklopenblogware/administration/assets/index-DD1lxWzD.js",
         "/bundles/werklopenblogware/administration/assets/index-i1YUFNdn.js",
         "/bundles/werklopenblogware/administration/assets/index-DmxXElnc.js",
-        "/bundles/werklopenblogware/administration/assets/index-CAbVHoT1.js",
-        "/bundles/werklopenblogware/administration/assets/index-BOG9sD-f.js",
+        "/bundles/werklopenblogware/administration/assets/index-D5hWPI9k.js",
         "/bundles/werklopenblogware/administration/assets/index-zkN11aSH.js",
-        "/bundles/werklopenblogware/administration/assets/index-DefliERF.js",
+        "/bundles/werklopenblogware/administration/assets/index-CUC8T_lY.js",
         "/bundles/werklopenblogware/administration/assets/index-Dx9oJQXp.js",
         "/bundles/werklopenblogware/administration/assets/index-dlyRI6Bd.js",
         "/bundles/werklopenblogware/administration/assets/index-Ce9cf-vP.js",
@@ -46,7 +47,7 @@
         "/bundles/werklopenblogware/administration/assets/index-BilngGZx.js"
       ],
       "js": [
-        "/bundles/werklopenblogware/administration/assets/werkl-open-blogware-TmNybzJE.js"
+        "/bundles/werklopenblogware/administration/assets/werkl-open-blogware-B5C7uv26.js"
       ],
       "legacy": false,
       "preload": []

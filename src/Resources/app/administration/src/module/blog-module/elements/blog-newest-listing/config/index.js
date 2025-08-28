@@ -1,6 +1,7 @@
 import template from './werkl-cms-el-config-newest-listing.html.twig';
 import './werkl-cms-el-config-newest-listing.scss';
 
+const { Mixin } = Shopware;
 const { EntityCollection, Criteria } = Shopware.Data;
 
 Shopware.Component.register('werkl-cms-el-config-newest-listing', {
@@ -9,7 +10,7 @@ Shopware.Component.register('werkl-cms-el-config-newest-listing', {
     inject: ['repositoryFactory'],
 
     mixins: [
-        'cms-element'
+        Mixin.getByName('cms-element'),
     ],
 
     data() {
@@ -32,16 +33,22 @@ Shopware.Component.register('werkl-cms-el-config-newest-listing', {
         },
 
         blogCategoriesConfigValue() {
-            return this.element.config.blogCategories.value;
+            return Array.isArray(this.element.config.blogCategories?.value) 
+                ? this.element.config.blogCategories.value 
+                : [];
         },
     },
 
     watch: {
-        selectedCategories(value) {
-            this.element.config.blogCategories.value = value.getIds();
-            this.element.data.blogCategories = value
-            // this.$set(this.element.data, 'blogCategories', value);
-            this.$emit('element-update', this.element);
+        selectedCategories: {
+            handler(value) {
+                if (value) {
+                    this.element.config.blogCategories.value = value.getIds();
+                    this.element.data.blogCategories = value;
+                    this.$emit('element-update', this.element);
+                }
+            },
+            deep: true, 
         },
     },
 
@@ -53,25 +60,35 @@ Shopware.Component.register('werkl-cms-el-config-newest-listing', {
         async createdComponent() {
             this.initElementConfig('blog-newest-listing');
             await this.getSelectedCategories();
+            this.$nextTick(() => {
+                console.log('Blog Category :', this.element.config.blogCategories.value);
+            });
         },
 
-        getSelectedCategories() {
+        async getSelectedCategories() {
             const context = { ...Shopware.Context.api };
-            if (!Shopware.Utils.types.isEmpty(this.blogCategoriesConfigValue)) {
+
+            if (this.blogCategoriesConfigValue.length > 0) {
                 const criteria = new Criteria();
                 criteria.setIds(this.blogCategoriesConfigValue);
 
-                this.blogCategoryRepository
-                    .search(criteria, context)
-                    .then((result) => {
-                        this.selectedCategories = result;
-                    });
+                try {
+                    const result = await this.blogCategoryRepository.search(criteria, context);
+                    this.selectedCategories = result;
+                } catch (error) {
+                    this.selectedCategories = new EntityCollection(
+                        this.blogCategoryRepository.route,
+                        this.blogCategoryRepository.entityName,
+                        context,
+                        new Criteria()
+                    );
+                }
             } else {
                 this.selectedCategories = new EntityCollection(
                     this.blogCategoryRepository.route,
-                    this.blogCategoryRepository.schema.entity,
+                    this.blogCategoryRepository.entityName,
                     context,
-                    new Criteria(),
+                    new Criteria()
                 );
             }
         },

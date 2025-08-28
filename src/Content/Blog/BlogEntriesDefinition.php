@@ -1,32 +1,34 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Werkl\OpenBlogware\Content\Blog;
 
+use Shopware\Core\System\Tag\TagDefinition;
 use Shopware\Core\Content\Cms\CmsPageDefinition;
-use Shopware\Core\Framework\DataAbstractionLayer\EntityDefinition;
+use Shopware\Core\Framework\DataAbstractionLayer\Field\FkField;
+use Shopware\Core\Framework\DataAbstractionLayer\Field\IdField;
+use Werkl\OpenBlogware\Content\BlogAuthor\BlogAuthorDefinition;
 use Shopware\Core\Framework\DataAbstractionLayer\Field\BoolField;
 use Shopware\Core\Framework\DataAbstractionLayer\Field\DateField;
-use Shopware\Core\Framework\DataAbstractionLayer\Field\FkField;
+use Shopware\Core\Framework\DataAbstractionLayer\FieldCollection;
+use Shopware\Core\Framework\DataAbstractionLayer\EntityDefinition;
+use Werkl\OpenBlogware\Content\BlogCategory\BlogCategoryDefinition;
+use Shopware\Core\Framework\DataAbstractionLayer\Field\DateTimeField;
 use Shopware\Core\Framework\DataAbstractionLayer\Field\Flag\ApiAware;
-use Shopware\Core\Framework\DataAbstractionLayer\Field\Flag\CascadeDelete;
+use Shopware\Core\Framework\DataAbstractionLayer\Field\Flag\Required;
 use Shopware\Core\Framework\DataAbstractionLayer\Field\Flag\Inherited;
 use Shopware\Core\Framework\DataAbstractionLayer\Field\Flag\PrimaryKey;
-use Shopware\Core\Framework\DataAbstractionLayer\Field\Flag\Required;
-use Shopware\Core\Framework\DataAbstractionLayer\Field\Flag\SearchRanking;
-use Shopware\Core\Framework\DataAbstractionLayer\Field\IdField;
-use Shopware\Core\Framework\DataAbstractionLayer\Field\ManyToManyAssociationField;
-use Shopware\Core\Framework\DataAbstractionLayer\Field\ManyToOneAssociationField;
-use Shopware\Core\Framework\DataAbstractionLayer\Field\OneToOneAssociationField;
-use Shopware\Core\Framework\DataAbstractionLayer\Field\ReferenceVersionField;
 use Shopware\Core\Framework\DataAbstractionLayer\Field\TranslatedField;
-use Shopware\Core\Framework\DataAbstractionLayer\Field\TranslationsAssociationField;
-use Shopware\Core\Framework\DataAbstractionLayer\FieldCollection;
-use Shopware\Core\System\Tag\TagDefinition;
+use Shopware\Core\Framework\DataAbstractionLayer\Field\Flag\CascadeDelete;
+use Shopware\Core\Framework\DataAbstractionLayer\Field\Flag\SearchRanking;
 use Werkl\OpenBlogware\Content\Blog\Aggregate\BlogCategoryMappingDefinition;
+use Shopware\Core\Framework\DataAbstractionLayer\Field\ReferenceVersionField;
+use Shopware\Core\Framework\DataAbstractionLayer\Field\OneToOneAssociationField;
+use Shopware\Core\Framework\DataAbstractionLayer\Field\ManyToOneAssociationField;
+use Shopware\Core\Framework\DataAbstractionLayer\Field\ManyToManyAssociationField;
+use Shopware\Core\Framework\DataAbstractionLayer\Field\TranslationsAssociationField;
 use Werkl\OpenBlogware\Content\Blog\BlogEntriesTranslation\BlogEntriesTranslationDefinition;
-use Werkl\OpenBlogware\Content\BlogAuthor\BlogAuthorDefinition;
-use Werkl\OpenBlogware\Content\BlogCategory\BlogCategoryDefinition;
 
 class BlogEntriesDefinition extends EntityDefinition
 {
@@ -72,7 +74,7 @@ class BlogEntriesDefinition extends EntityDefinition
             (new TranslatedField('content'))->addFlags(new ApiAware(), new SearchRanking(SearchRanking::MIDDLE_SEARCH_RANKING)),
             (new TranslatedField('customFields'))->addFlags(new ApiAware()),
 
-            (new DateField('published_at', 'publishedAt'))->addFlags(new Required(), new ApiAware()),
+            (new DateTimeField('published_at', 'publishedAt'))->addFlags(new Required(), new ApiAware()),
 
             (new TranslationsAssociationField(BlogEntriesTranslationDefinition::class, 'werkl_blog_entries_id'))->addFlags(new Required()),
 
